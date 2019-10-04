@@ -1,0 +1,19 @@
+{application, bellboy,
+ [{description, "Bellboy is small Erlang client library for send SMS by REST API"},
+  {vsn, "0.1.0"},
+  {registered, []},
+  {mod, {bellboy_app, []}},
+  {applications,
+   [kernel,
+    stdlib,
+    jiffy,
+    uuid,
+    inets,
+    ssl
+   ]},
+  {env,[]},
+  {modules, []},
+  {maintainers, []},
+  {licenses, ["MIT"]},
+  {links, []}
+ ]}.
