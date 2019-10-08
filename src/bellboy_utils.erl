@@ -42,10 +42,12 @@ get_body({_, _, Body}) -> Body.
 %% -------------------------------------------------------------------
 %% @doc
 %% HTTPC request with/without headers
-%% #{m => get, u => "https://httpbin.org/bearer", h => #{"Authorization" => "Bearer dXNlcjpwYXNz"}}
 %% @end
 %% -------------------------------------------------------------------
 -spec httpc_request(Params :: maps:map()) -> {ok, Result :: tuple()} | {error, Reason :: tuple()}.
 
 httpc_request(#{m := M, u := URL, h := H, b := B, ct := CT}) ->
-  httpc:request(M, {URL, maps:fold(fun(K, V, Acc) -> [{K, V} | Acc] end, [], H), CT, B}, [], []).
+  httpc:request(M, {URL, maps:fold(fun(K, V, Acc) -> [{K, V} | Acc] end, [], H), CT, B}, [], []);
+
+httpc_request(#{m := M, u := URL, h := H}) ->
+  httpc:request(M, {URL, maps:fold(fun(K, V, Acc) -> [{K, V} | Acc] end, [], H)}, [], []).

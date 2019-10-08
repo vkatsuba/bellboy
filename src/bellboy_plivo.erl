@@ -24,6 +24,7 @@
 %% -------------------------------------------------------------------
 
 message(#{type := send_message} = Data) -> send_message(Data);
+message(#{type := get_message} = Data)  -> get_message(Data);
 message(_) -> ?BAD_ARG.
 
 %%% ==================================================================
@@ -33,19 +34,35 @@ message(_) -> ?BAD_ARG.
 %% -------------------------------------------------------------------
 %% @private
 %% @doc
-%% Send simple sms message
+%% Send simple SMS message
 %% @end
 %% -------------------------------------------------------------------
--spec send_message(Params :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple()} | tuple().
+-spec send_message(Params :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
 
 send_message(#{auth_id := AID, auth_token := AT, payload := P}) when is_list(AID), is_list(AT), is_map(P) ->
-  RD = #{m => post, u => ?PLIVO_URL(AID), h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}, b => jiffy:encode(P), ct => "application/json"},
+  RD = #{m => post, u => ?PLIVO_URL_MSG(AID), h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}, b => jiffy:encode(P), ct => "application/json"},
   case bellboy_utils:httpc_request(RD) of
-    {ok, Resp} -> #{code => bellboy_utils:get_code(Resp), body => gen_resp_body(bellboy_utils:get_body(Resp)), response => Resp};
+    {ok, Resp} -> {ok, #{code => bellboy_utils:get_code(Resp), body => gen_resp_body(bellboy_utils:get_body(Resp)), response => Resp}};
     Error -> Error
   end;
 send_message(_) -> ?BAD_ARG.
 
+%% -------------------------------------------------------------------
+%% @private
+%% @doc
+%% Get SMS message
+%% @end
+%% -------------------------------------------------------------------
+-spec get_message(Params :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
+
+get_message(#{auth_id := AID, auth_token := AT, message_uuid := MUUID}) when is_list(AID), is_list(AT), is_list(MUUID) ->
+  RD = #{m => get, u => ?PLIVO_URL_MSG(AID) ++ MUUID, h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}},
+  case bellboy_utils:httpc_request(RD) of
+    {ok, Resp} -> {ok, #{code => bellboy_utils:get_code(Resp), body => gen_resp_body(bellboy_utils:get_body(Resp)), response => Resp}};
+    Error -> Error
+  end;
+
+get_message(_) -> ?BAD_ARG.
 %% -------------------------------------------------------------------
 %% @private
 %% @doc
