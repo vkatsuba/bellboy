@@ -7,6 +7,7 @@
 -export([
   get_code/1,
   get_body/1,
+  gen_body/1,
   httpc_request/1
 ]).
 
@@ -38,6 +39,18 @@ get_code({{_, Code, _}, _, _}) -> Code.
 
 get_body({_, _, Body}) -> Body.
 
+%% -------------------------------------------------------------------
+%% @doc
+%% Helper for generate body: if data has JSON format - decode to map, if not - return data as result
+%% @end
+%% -------------------------------------------------------------------
+-spec gen_body(Data :: lists:list() | binary()) -> Result :: maps:map() | any().
+
+gen_body(Data) ->
+  case catch jiffy:decode(Data, [return_maps]) of
+    Map when is_map(Map) -> Map;
+    _ -> Data
+  end.
 
 %% -------------------------------------------------------------------
 %% @doc

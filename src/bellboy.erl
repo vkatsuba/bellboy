@@ -6,7 +6,8 @@
 
 
 -export([
-  plivo/1
+  plivo/1,
+  twilio/1
 ]).
 
 %%% ==================================================================
@@ -28,3 +29,12 @@
 -spec plivo(Data :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
 
 plivo(Data) -> bellboy_plivo:message(Data).
+
+%% -------------------------------------------------------------------
+%% @doc
+%% Twilio
+%% @end
+%% -------------------------------------------------------------------
+-spec twilio(Data :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
+
+twilio(Data) -> bellboy_twilio:message(Data).

@@ -1,4 +1,4 @@
--module(bellboy_plivo).
+-module(bellboy_twilio).
 
 %%% ==================================================================
 %%% API
@@ -19,7 +19,7 @@
 %% -------------------------------------------------------------------
 %% @private
 %% @doc
-%% Plivo handler
+%% Twilio handler
 %% @end
 %% -------------------------------------------------------------------
 
@@ -35,10 +35,6 @@ message(#{type := get_messages} = Data) ->
 message(_) ->
   ?BAD_ARG.
 
-%%% ==================================================================
-%%% Internal/Private functions
-%%% ==================================================================
-
 %% -------------------------------------------------------------------
 %% @private
 %% @doc
@@ -47,13 +43,19 @@ message(_) ->
 %% -------------------------------------------------------------------
 -spec send_message(Params :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
 
-send_message(#{auth_id := AID, auth_token := AT, payload := P}) when is_list(AID), is_list(AT), is_map(P) ->
-  RD = #{m => post, u => ?PLIVO_URL_MSG(AID), h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}, b => jiffy:encode(P), ct => "application/json"},
-  case bellboy_utils:httpc_request(RD) of
-    {ok, Resp} ->
-      {ok, #{code => bellboy_utils:get_code(Resp), body => bellboy_utils:gen_body(bellboy_utils:get_body(Resp)), response => Resp}};
-    Error ->
-      Error
+send_message(#{account_sid := AID, auth_token := AT, body := B, from := F, to := T}) ->
+  case is_valid([is_list(AID), is_list(AT), is_list(B), is_list(F), is_list(T)]) of
+    true ->
+      BURI = "Body=" ++ http_uri:encode(B) ++ "&From=" ++ http_uri:encode(F) ++ "&To=" ++ http_uri:encode(T),
+      RD = #{m => post, u => ?TWILIO_URL_MSG(AID), h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}, ct => "application/x-www-form-urlencoded", b => BURI},
+      case bellboy_utils:httpc_request(RD) of
+        {ok, Resp} ->
+          {ok, #{code => bellboy_utils:get_code(Resp), body => bellboy_utils:gen_body(bellboy_utils:get_body(Resp)), response => Resp}};
+        Error ->
+          Error
+      end;
+    false ->
+      ?BAD_ARG
   end;
 
 send_message(_) ->
@@ -62,13 +64,13 @@ send_message(_) ->
 %% -------------------------------------------------------------------
 %% @private
 %% @doc
-%% Get SMS message
+%% Get specific SMS message
 %% @end
 %% -------------------------------------------------------------------
 -spec get_message(Params :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
 
-get_message(#{auth_id := AID, auth_token := AT, message_uuid := MUUID}) when is_list(AID), is_list(AT), is_list(MUUID) ->
-  RD = #{m => get, u => ?PLIVO_URL_MSG(AID) ++ MUUID, h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}},
+get_message(#{account_sid := AID, auth_token := AT, sid := SID}) when is_list(AID), is_list(AT), is_list(SID) ->
+  RD = #{m => get, u => ?TWILIO_URL_SPEC_MSG(AID, SID), h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}},
   case bellboy_utils:httpc_request(RD) of
     {ok, Resp} ->
       {ok, #{code => bellboy_utils:get_code(Resp), body => bellboy_utils:gen_body(bellboy_utils:get_body(Resp)), response => Resp}};
@@ -82,13 +84,13 @@ get_message(_) ->
 %% -------------------------------------------------------------------
 %% @private
 %% @doc
-%% Get SMS messages
+%% Get all SMS messages
 %% @end
 %% -------------------------------------------------------------------
 -spec get_messages(Params :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
 
-get_messages(#{auth_id := AID, auth_token := AT}) when is_list(AID), is_list(AT) ->
-  RD = #{m => get, u => ?PLIVO_URL_MSG(AID), h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}},
+get_messages(#{account_sid := AID, auth_token := AT}) when is_list(AID), is_list(AT) ->
+  RD = #{m => get, u => ?TWILIO_URL_MSG(AID), h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}},
   case bellboy_utils:httpc_request(RD) of
     {ok, Resp} ->
       {ok, #{code => bellboy_utils:get_code(Resp), body => bellboy_utils:gen_body(bellboy_utils:get_body(Resp)), response => Resp}};
@@ -98,3 +100,18 @@ get_messages(#{auth_id := AID, auth_token := AT}) when is_list(AID), is_list(AT)
 
 get_messages(_) ->
   ?BAD_ARG.
+
+%% -------------------------------------------------------------------
+%% @private
+%% @doc
+%% Validation
+%% @end
+%% -------------------------------------------------------------------
+is_valid([]) ->
+  true;
+
+is_valid([true | T]) ->
+  is_valid(T);
+
+is_valid(_) ->
+  false.
