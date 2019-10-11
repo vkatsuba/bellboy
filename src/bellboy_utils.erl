@@ -8,7 +8,8 @@
   get_code/1,
   get_body/1,
   gen_body/1,
-  httpc_request/1
+  httpc_request/1,
+  is_valid/1
 ]).
 
 %%% ==================================================================
@@ -62,5 +63,21 @@ gen_body(Data) ->
 httpc_request(#{m := M, u := URL, h := H, b := B, ct := CT}) ->
   httpc:request(M, {URL, maps:fold(fun(K, V, Acc) -> [{K, V} | Acc] end, [], H), CT, B}, [], []);
 
+httpc_request(#{m := M, u := URL, b := B, ct := CT}) ->
+  httpc:request(M, {URL, [], CT, B}, [], []);
+
 httpc_request(#{m := M, u := URL, h := H}) ->
-  httpc:request(M, {URL, maps:fold(fun(K, V, Acc) -> [{K, V} | Acc] end, [], H)}, [], []).
+  httpc:request(M, {URL, maps:fold(fun(K, V, Acc) -> [{K, V} | Acc] end, [], H)}, [], []);
+
+httpc_request(#{m := M, u := URL}) ->
+  httpc:request(M, {URL, []}, [], []).
+
+%% -------------------------------------------------------------------
+%% @private
+%% @doc
+%% Validation: is list has all true elements
+%% @end
+%% -------------------------------------------------------------------
+is_valid([])          -> true;
+is_valid([true | T])  -> is_valid(T);
+is_valid(_)           -> false.

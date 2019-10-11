@@ -44,7 +44,7 @@ message(_) ->
 -spec send_message(Params :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
 
 send_message(#{account_sid := AID, auth_token := AT, body := B, from := F, to := T}) ->
-  case is_valid([is_list(AID), is_list(AT), is_list(B), is_list(F), is_list(T)]) of
+  case bellboy_utils:is_valid([is_list(AID), is_list(AT), is_list(B), is_list(F), is_list(T)]) of
     true ->
       BURI = "Body=" ++ http_uri:encode(B) ++ "&From=" ++ http_uri:encode(F) ++ "&To=" ++ http_uri:encode(T),
       RD = #{m => post, u => ?TWILIO_URL_MSG(AID), h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}, ct => "application/x-www-form-urlencoded", b => BURI},
@@ -100,18 +100,3 @@ get_messages(#{account_sid := AID, auth_token := AT}) when is_list(AID), is_list
 
 get_messages(_) ->
   ?BAD_ARG.
-
-%% -------------------------------------------------------------------
-%% @private
-%% @doc
-%% Validation
-%% @end
-%% -------------------------------------------------------------------
-is_valid([]) ->
-  true;
-
-is_valid([true | T]) ->
-  is_valid(T);
-
-is_valid(_) ->
-  false.

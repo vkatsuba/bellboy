@@ -14,4 +14,8 @@
 -define(TWILIO_URL_MSG(AuthID), "https://api.twilio.com/2010-04-01/Accounts/" ++ AuthID ++ "/Messages.json").
 -define(TWILIO_URL_SPEC_MSG(AuthID, Sid), "https://api.twilio.com/2010-04-01/Accounts/" ++ AuthID ++ "/Messages/" ++ Sid ++ ".json").
 -define(BASIC_AUTH(AuthID, AuthToken), "Basic " ++ binary_to_list(base64:encode(AuthID ++ ":" ++ AuthToken))).
+-define(NEXMO_URL_MSG, "https://rest.nexmo.com/sms/json").
+-define(NEXMO_URL_VERIFY, "https://api.nexmo.com/verify/json").
+-define(NEXMO_URL_CONTROL, "https://api.nexmo.com/verify/control/json").
+-define(NEXMO_URL_CHECK, "https://api.nexmo.com/verify/check/json").
 -endif.

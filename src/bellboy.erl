@@ -7,7 +7,8 @@
 
 -export([
   plivo/1,
-  twilio/1
+  twilio/1,
+  nexmo/1
 ]).
 
 %%% ==================================================================
@@ -38,3 +39,12 @@ plivo(Data) -> bellboy_plivo:message(Data).
 -spec twilio(Data :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
 
 twilio(Data) -> bellboy_twilio:message(Data).
+
+%% -------------------------------------------------------------------
+%% @doc
+%% Nexmo
+%% @end
+%% -------------------------------------------------------------------
+-spec nexmo(Data :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
+
+nexmo(Data) -> bellboy_nexmo:message(Data).
