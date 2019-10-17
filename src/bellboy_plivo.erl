@@ -47,7 +47,8 @@ message(_) ->
 %% -------------------------------------------------------------------
 -spec send_message(Params :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
 
-send_message(#{auth_id := AID, auth_token := AT, payload := P}) when is_list(AID), is_list(AT), is_map(P) ->
+send_message(#{auth_id := AID, auth_token := AT} = Data) when is_list(AID), is_list(AT) ->
+  P = maps:without([type, auth_id, payload], Data),
   RD = #{m => post, u => ?PLIVO_URL_MSG(AID), h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}, b => jiffy:encode(P), ct => "application/json"},
   case bellboy_utils:httpc_request(RD) of
     {ok, Resp} ->
