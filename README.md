@@ -5,6 +5,7 @@ Bellboy - is HTTP client library for send SMS by different services: Plivo, Twil
 * [Goals](#goals)
 * [Build & Run](#build--run)
 * [Clean Project](#clean-project)
+* [Install bellboy to project](#install-bellboy-to-project-rebar3)
 * [Plivo](#plivo)
 * [Twilio](#twilio)
 * [Nexmo](#nexmo)
