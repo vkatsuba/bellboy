@@ -6,7 +6,8 @@ Bellboy - is Erlang HTTP client library for send SMS by different services: Pliv
 * [Build & Run](#build--run)
 * [Clean Project](#clean-project)
 * [Install bellboy to project](#install-bellboy-to-project-rebar3)
-* [Plivo](#plivo)
+* [Erlang Plivo](#erlang-plivo)
+  * [Send SMS By Erlang Plivo](#send-sms-by-erlang-plivo)
 * [Twilio](#twilio)
 * [Nexmo](#nexmo)
 * [Support](#support)
@@ -47,8 +48,24 @@ $ make clean
 ...
 ```
 
-# Plivo
-...
+# Erlang Plivo
+## Send SMS By Erlang Plivo
+```erlang
+% https://docs.labs.plivo.com/latest/python/elements/message/send-an-sms
+ReqMap = #{
+  type => send_message,            % atom   - bellbo type for send SMS
+  auth_id => "PlivoAuthID",        % list   - plivo auth ID
+  auth_token => "PlivoAuthToken",  % list   - plivo auth token
+  src => <<"00000000000000000">>,  % binary - plivo phone number
+  dst => <<"11111111111111111">>,  % binary - user phone number
+  text => <<"Plivo SMS Text">>     % binary - SMS text
+},
+
+% Code     - integer()
+% Body     - map() | list()
+% Response - list()
+{ok, #{code := Code, body := Body, response := FullResp}} = bellboy:plivo(ReqMap).
+```
 
 # Twilio
 ...
