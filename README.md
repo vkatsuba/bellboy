@@ -53,7 +53,7 @@ $ make clean
 ```erlang
 % https://docs.labs.plivo.com/latest/python/elements/message/send-an-sms
 ReqMap = #{
-  type => send_message,            % atom   - bellbo type for send SMS
+  type => send_message,            % atom   - bellboy type for send SMS
   auth_id => "PlivoAuthID",        % list   - plivo auth ID
   auth_token => "PlivoAuthToken",  % list   - plivo auth token
   src => <<"00000000000000000">>,  % binary - plivo phone number
