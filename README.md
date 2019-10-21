@@ -72,10 +72,10 @@ ReqMap = #{
 ```erlang
 % https://www.plivo.com/docs/sms/getting-started/advanced/sms-details-single-message
 ReqMap = #{
-  type => get_message,             % atom()   - bellboy type for send SMS
-  auth_id => "PlivoAuthID",        % list()   - plivo auth ID
-  auth_token => "PlivoAuthToken",  % list()   - plivo auth token
-  message_uuid => "PlivoMsgUUID",  % list() -   plivo message UUID
+  type => get_message,             % atom() - bellboy type for send SMS
+  auth_id => "PlivoAuthID",        % list() - plivo auth ID
+  auth_token => "PlivoAuthToken",  % list() - plivo auth token
+  message_uuid => "PlivoMsgUUID",  % list() - plivo message UUID
 },
 
 % Code     - integer()
