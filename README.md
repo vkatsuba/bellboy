@@ -9,6 +9,7 @@ Bellboy - is Erlang HTTP client library for send SMS by different services: Pliv
 * [Erlang Plivo](#erlang-plivo)
   * [Send SMS By Erlang Plivo](#send-sms-by-erlang-plivo)
   * [Get Details of a Single Message By Erlang Plivo](#get-details-of-a-single-message-by-erlang-plivo)
+  * [Get Details of all Messages By Erlang Plivo](#get-details-of-all-messages-by-erlang-plivo)
 * [Twilio](#twilio)
 * [Nexmo](#nexmo)
 * [Support](#support)
@@ -75,7 +76,22 @@ ReqMap = #{
   type => get_message,             % atom() - bellboy type for send SMS
   auth_id => "PlivoAuthID",        % list() - plivo auth ID
   auth_token => "PlivoAuthToken",  % list() - plivo auth token
-  message_uuid => "PlivoMsgUUID",  % list() - plivo message UUID
+  message_uuid => "PlivoMsgUUID"   % list() - plivo message UUID
+},
+
+% Code     - integer()
+% Body     - map() | list()
+% Response - list()
+{ok, #{code := Code, body := Body, response := FullResp}} = bellboy:plivo(ReqMap).
+```
+
+## Get Details of all Messages By Erlang Plivo
+```erlang
+% https://www.plivo.com/docs/sms/getting-started/advanced/sms-details-all-messages/
+ReqMap = #{
+  type => get_messages,            % atom() - bellboy type for send SMS
+  auth_id => "PlivoAuthID",        % list() - plivo auth ID
+  auth_token => "PlivoAuthToken"   % list() - plivo auth token
 },
 
 % Code     - integer()
