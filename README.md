@@ -10,7 +10,8 @@ Bellboy - is Erlang HTTP client library for send SMS by different services: Pliv
   * [Send SMS By Erlang Plivo](#send-sms-by-erlang-plivo)
   * [Get Details of a Single Message By Erlang Plivo](#get-details-of-a-single-message-by-erlang-plivo)
   * [Get Details of all Messages By Erlang Plivo](#get-details-of-all-messages-by-erlang-plivo)
-* [Twilio](#twilio)
+* [Erlang Twilio](#erlang-twilio)
+  * [Send SMS By Erlang Twilio](#send-sms-by-erlang-twilio)
 * [Nexmo](#nexmo)
 * [Support](#support)
 
@@ -56,9 +57,9 @@ $ make clean
 % https://docs.labs.plivo.com/latest/python/elements/message/send-an-sms
 ReqMap = #{
   type => send_message,            % atom()   - bellboy type for send SMS
-  auth_id => "PlivoAuthID",        % list()   - plivo auth ID
-  auth_token => "PlivoAuthToken",  % list()   - plivo auth token
-  src => <<"00000000000000000">>,  % binary() - plivo phone number
+  auth_id => "PlivoAuthID",        % list()   - Plivo auth ID
+  auth_token => "PlivoAuthToken",  % list()   - Plivo auth token
+  src => <<"00000000000000000">>,  % binary() - Plivo phone number
   dst => <<"11111111111111111">>,  % binary() - user phone number
   text => <<"Plivo SMS Text">>     % binary() - SMS text
 },
@@ -74,9 +75,9 @@ ReqMap = #{
 % https://www.plivo.com/docs/sms/getting-started/advanced/sms-details-single-message
 ReqMap = #{
   type => get_message,             % atom() - bellboy type for send SMS
-  auth_id => "PlivoAuthID",        % list() - plivo auth ID
-  auth_token => "PlivoAuthToken",  % list() - plivo auth token
-  message_uuid => "PlivoMsgUUID"   % list() - plivo message UUID
+  auth_id => "PlivoAuthID",        % list() - Plivo auth ID
+  auth_token => "PlivoAuthToken",  % list() - Plivo auth token
+  message_uuid => "PlivoMsgUUID"   % list() - Plivo message UUID
 },
 
 % Code     - integer()
@@ -90,8 +91,8 @@ ReqMap = #{
 % https://www.plivo.com/docs/sms/getting-started/advanced/sms-details-all-messages/
 ReqMap = #{
   type => get_messages,            % atom() - bellboy type for send SMS
-  auth_id => "PlivoAuthID",        % list() - plivo auth ID
-  auth_token => "PlivoAuthToken"   % list() - plivo auth token
+  auth_id => "PlivoAuthID",        % list() - Plivo auth ID
+  auth_token => "PlivoAuthToken"   % list() - Plivo auth token
 },
 
 % Code     - integer()
@@ -100,8 +101,24 @@ ReqMap = #{
 {ok, #{code := Code, body := Body, response := FullResp}} = bellboy:plivo(ReqMap).
 ```
 
-# Twilio
-...
+# Erlang Twilio
+## Send SMS By Erlang Twilio
+```erlang
+% https://www.twilio.com/docs/sms/send-messages
+ReqMap = #{
+  type => get_messages,            % atom() - bellboy type for send SMS
+  account_sid => "PlivoAuthID",    % list() - Twilio account SID
+  auth_token => "PlivoAuthToken",  % list() - Twilio auth token
+  body => "Twilio SMS Text",       % list() - SMS text
+  from => "00000000000000000",     % list() - Twilio phone number
+  to => "11111111111111111"        % list() - user phone number
+},
+
+% Code     - integer()
+% Body     - map() | list()
+% Response - list()
+{ok, #{code := Code, body := Body, response := FullResp}} = bellboy:twilio(ReqMap).
+```
 
 # Nexmo
 ...
