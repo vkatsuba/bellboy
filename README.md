@@ -106,12 +106,12 @@ ReqMap = #{
 ```erlang
 % https://www.twilio.com/docs/sms/send-messages
 ReqMap = #{
-  type        => send_message,            % atom() - bellboy type for send SMS
-  account_sid => "PlivoAuthID",           % list() - Twilio account SID
-  auth_token  => "PlivoAuthToken",        % list() - Twilio auth token
-  body        => "Twilio SMS Text",       % list() - SMS text
-  from        => "00000000000000000",     % list() - Twilio phone number
-  to          => "11111111111111111"      % list() - user phone number
+  type        => send_message,          % atom() - bellboy type for send SMS
+  account_sid => "TwilioAccountSID",    % list() - Twilio account SID
+  auth_token  => "TwilioAuthToken",     % list() - Twilio auth token
+  body        => "Twilio SMS Text",     % list() - SMS text
+  from        => "00000000000000000",   % list() - Twilio phone number
+  to          => "11111111111111111"    % list() - user phone number
 },
 
 % Code     - integer()
