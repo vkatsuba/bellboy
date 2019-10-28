@@ -13,6 +13,7 @@ Bellboy - is Erlang HTTP client library for send SMS by different services: Pliv
 * [Erlang Twilio](#erlang-twilio)
   * [Send SMS By Erlang Twilio](#send-sms-by-erlang-twilio)
   * [Fetch a Message Resource By Erlang Twilio](#fetch-a-message-resource-by-erlang-twilio)
+  * [Read Multiple Message Resources By Erlang Twilio](#read-multiple-message-resources-by-erlang-twilio)
 * [Nexmo](#nexmo)
 * [Support](#support)
 
@@ -121,7 +122,7 @@ ReqMap = #{
 {ok, #{code := Code, body := Body, response := FullResp}} = bellboy:twilio(ReqMap).
 ```
 
-# Fetch a Message Resource By Erlang Twilio
+## Fetch a Message Resource By Erlang Twilio
 ```erlang
 % https://www.twilio.com/docs/sms/api/message-resource#fetch-a-message-resource
 ReqMap = #{
@@ -129,6 +130,21 @@ ReqMap = #{
   account_sid => "TwilioAccountSID",   % list() - Twilio account SID
   auth_token  => "TwilioAuthToken",    % list() - Twilio auth token
   sid         => "MsgSid"              % list() - Twilio SID of SMS message
+},
+
+% Code     - integer()
+% Body     - map() | list()
+% Response - list()
+{ok, #{code := Code, body := Body, response := FullResp}} = bellboy:twilio(ReqMap).
+```
+
+## Read Multiple Message Resources By Erlang Twilio
+```erlang
+% https://www.twilio.com/docs/sms/api/message-resource#read-multiple-message-resources
+ReqMap = #{
+  type        => get_messages,         % atom() - bellboy type for send SMS
+  account_sid => "TwilioAccountSID",   % list() - Twilio account SID
+  auth_token  => "TwilioAuthToken"     % list() - Twilio auth token
 },
 
 % Code     - integer()
