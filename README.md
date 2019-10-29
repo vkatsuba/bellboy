@@ -7,7 +7,7 @@ Bellboy - is Erlang HTTP client library for send SMS by different services: Pliv
 * [Clean Project](#clean-project)
 * [Install bellboy to project](#install-bellboy-to-project-rebar3)
 * [Erlang Plivo](#erlang-plivo)
-  * [Send SMS By Erlang Plivo](#send-sms-by-erlang-plivo)
+ * [Send SMS By Erlang Plivo](#send-sms-by-erlang-plivo)
   * [Get Details of a Single Message By Erlang Plivo](#get-details-of-a-single-message-by-erlang-plivo)
   * [Get Details of all Messages By Erlang Plivo](#get-details-of-all-messages-by-erlang-plivo)
 * [Erlang Twilio](#erlang-twilio)
