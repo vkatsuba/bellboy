@@ -163,7 +163,7 @@ ReqMap = #{
   type        => send_sms,                 % atom()   - bellboy type for send SMS
   from        => <<"00000000000000000">>,  % binary() - Nexmo name or number
   to          => <<"11111111111111111">>,  % binary() - User phone number
-  text        => "Nexmo SMS text",         % binary() - SMS text
+  text        => <<"Nexmo SMS text">>,     % binary() - SMS text
   api_key     => <<"ApiKey">>,             % binary() - Nexmo API key
   api_secret  => <<"ApiSecret">>           % binary() - Nexmo API secret
 },
