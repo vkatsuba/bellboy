@@ -14,7 +14,9 @@ Bellboy - is Erlang HTTP client library for send SMS by different services: Pliv
   * [Send SMS By Erlang Twilio](#send-sms-by-erlang-twilio)
   * [Fetch a Message Resource By Erlang Twilio](#fetch-a-message-resource-by-erlang-twilio)
   * [Read Multiple Message Resources By Erlang Twilio](#read-multiple-message-resources-by-erlang-twilio)
-* [Nexmo](#nexmo)
+* [Erlang Nexmo](#erlang-nexmo)
+  * [Send SMS By Erlang Nexmo](#send-sms-by-erlang-nexmo)
+
 * [Support](#support)
 
 # Goals
@@ -113,7 +115,7 @@ ReqMap = #{
   auth_token  => "TwilioAuthToken",    % list() - Twilio auth token
   body        => "Twilio SMS Text",    % list() - SMS text
   from        => "00000000000000000",  % list() - Twilio phone number
-  to          => "11111111111111111"   % list() - user phone number
+  to          => "11111111111111111"   % list() - User phone number
 },
 
 % Code     - integer()
@@ -153,8 +155,24 @@ ReqMap = #{
 {ok, #{code := Code, body := Body, response := FullResp}} = bellboy:twilio(ReqMap).
 ```
 
-# Nexmo
+# Erlang Nexmo
+## Send SMS By Erlang Nexmo
+```erlang
+% https://developer.nexmo.com/api/sms
+ReqMap = #{
+  type        => send_sms,                 % atom()   - bellboy type for send SMS
+  from        => <<"00000000000000000">>,  % binary() - Nexmo name or number
+  to          => <<"11111111111111111">>,  % binary() - User phone number
+  text        => "Nexmo SMS text",         % binary() - SMS text
+  api_key     => <<"ApiKey">>,             % binary() - Nexmo API key
+  api_secret  => <<"ApiSecret">>           % binary() - Nexmo API secret
+},
 
+% Code     - integer()
+% Body     - map() | list()
+% Response - list()
+{ok, #{code := Code, body := Body, response := FullResp}} = bellboy:nexmo(ReqMap).
+```
 
 # Support
 v.katsuba.dev@gmail.com
