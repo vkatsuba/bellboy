@@ -178,7 +178,7 @@ ReqMap = #{
 ```erlang
 % https://developer.nexmo.com/verify/overview 
 ReqMap = #{
-  type        => send_pin,                 % atom()   - bellboy type for send SMS
+  type        => send_pin,                 % atom() - bellboy type for send SMS
   brand       => "Brand",                  % list() - Nexmo brand
   number      => "11111111111111111",      % list() - User phone number
   code_length => "4",                      % list() - Length of PIN
