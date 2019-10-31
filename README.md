@@ -198,7 +198,7 @@ ReqMap = #{
 % https://developer.nexmo.com/verify/overview 
 ReqMap = #{
   type        => check_pin,                % atom() - bellboy type for send SMS
-  request_id  => "ReqID",                  % list() - Nexmo `request_id` what provided from `send_pin` response
+  request_id  => "ReqID",                  % list() - Nexmo `request_id` field from `send_pin` response
   code        => "1111",                   % list() - Nexmo PIN code 
   api_key     => "ApiKey",                 % list() - Nexmo API key
   api_secret  => "ApiSecret"               % list() - Nexmo API secret
