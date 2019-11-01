@@ -22,7 +22,7 @@ Bellboy - is Erlang HTTP client library for send SMS by different services: Pliv
 * [Support](#support)
 
 # Goals
-...
+
 
 # Build & Run
 ```sh
