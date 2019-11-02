@@ -18,6 +18,7 @@ Bellboy - is Erlang HTTP client library for send SMS by different services: Pliv
   * [Send SMS By Erlang Nexmo](#send-sms-by-erlang-nexmo)
   * [Send PIN By Erlang Nexmo](#send-pin-by-erlang-nexmo)
   * [Check PIN By Erlang Nexmo](#check-pin-by-erlang-nexmo)
+  * [Cancel PIN By Erlang Nexmo](#cancel-pin-by-erlang-nexmo)
 
 * [Support](#support)
 
@@ -200,6 +201,22 @@ ReqMap = #{
   type        => check_pin,                % atom() - bellboy type for send SMS
   request_id  => "ReqID",                  % list() - Nexmo `request_id` field from `send_pin` response
   code        => "1111",                   % list() - Nexmo PIN code 
+  api_key     => "ApiKey",                 % list() - Nexmo API key
+  api_secret  => "ApiSecret"               % list() - Nexmo API secret
+},
+
+% Code     - integer()
+% Body     - map() | list()
+% Response - list()
+{ok, #{code := Code, body := Body, response := FullResp}} = bellboy:nexmo(ReqMap).
+```
+
+## Cancel PIN By Erlang Nexmo
+```erlang
+% https://developer.nexmo.com/verify/overview 
+ReqMap = #{
+  type        => cancel_pin,               % atom() - bellboy type for send SMS
+  request_id  => "ReqID",                  % list() - Nexmo `request_id` field from `send_pin` response
   api_key     => "ApiKey",                 % list() - Nexmo API key
   api_secret  => "ApiSecret"               % list() - Nexmo API secret
 },
