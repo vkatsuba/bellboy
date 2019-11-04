@@ -1,5 +1,5 @@
 # bellboy
-Bellboy - is Erlang HTTP client library for send SMS by different services: Plivo, Twilio, Nexmo
+Bellboy - is Erlang HTTP client library for send SMS by different services: Plivo, Twilio, Nexmo.
 
 ## Contents
 * [Goals](#goals)
@@ -23,7 +23,7 @@ Bellboy - is Erlang HTTP client library for send SMS by different services: Pliv
 * [Support](#support)
 
 # Goals
-Bellboy aims to provide a simple way for send SMS by different services by REST API
+Bellboy aims to provide a simple way for send SMS by different services by REST API.
 
 # Build & Run
 ```sh
