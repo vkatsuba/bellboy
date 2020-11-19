@@ -19,7 +19,6 @@ Bellboy - is Erlang HTTP client library for send SMS by different services: Pliv
   * [Send PIN By Erlang Nexmo](#send-pin-by-erlang-nexmo)
   * [Check PIN By Erlang Nexmo](#check-pin-by-erlang-nexmo)
   * [Cancel PIN By Erlang Nexmo](#cancel-pin-by-erlang-nexmo)
-
 * [Support](#support)
 
 # Goals
