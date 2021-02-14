@@ -13,5 +13,5 @@
   {modules, []},
   {maintainers, []},
   {licenses, ["MIT"]},
-  {links, []}
+  {links, [{"Github", "https://github.com/vkatsuba/bellboy"}]}
  ]}.
