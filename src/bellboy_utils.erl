@@ -48,7 +48,7 @@ get_body({_, _, Body}) -> Body.
 -spec gen_body(Data :: lists:list() | binary()) -> Result :: maps:map() | any().
 
 gen_body(Data) ->
-  case catch jiffy:decode(Data, [return_maps]) of
+  case catch jsx:decode(Data, [{return_maps, true}]) of
     Map when is_map(Map) -> Map;
     _ -> Data
   end.

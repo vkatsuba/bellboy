@@ -49,7 +49,7 @@ message(_) ->
 
 send_message(#{auth_id := AID, auth_token := AT} = Data) when is_list(AID), is_list(AT) ->
   P = maps:without([type, auth_id, payload], Data),
-  RD = #{m => post, u => ?PLIVO_URL_MSG(AID), h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}, b => jiffy:encode(P), ct => "application/json"},
+  RD = #{m => post, u => ?PLIVO_URL_MSG(AID), h => #{"Authorization" => ?BASIC_AUTH(AID, AT)}, b => jsx:encode(P), ct => "application/json"},
   case bellboy_utils:httpc_request(RD) of
     {ok, Resp} ->
       {ok, #{code => bellboy_utils:get_code(Resp), body => bellboy_utils:gen_body(bellboy_utils:get_body(Resp)), response => Resp}};

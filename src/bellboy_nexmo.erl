@@ -53,7 +53,7 @@ message(_) ->
 send_sms(#{from := F, text := TXT, to := T, api_key := AK, api_secret := AC} = B) ->
   case bellboy_utils:is_valid([is_binary(F), is_binary(TXT), is_binary(T), is_binary(AK), is_binary(AC)]) of
     true ->
-      RD = #{m => post, u => ?NEXMO_URL_MSG, ct => "application/json", b => jiffy:encode(B)},
+      RD = #{m => post, u => ?NEXMO_URL_MSG, ct => "application/json", b => jsx:encode(B)},
       case bellboy_utils:httpc_request(RD) of
         {ok, Resp} ->
           {ok, #{code => bellboy_utils:get_code(Resp), body => bellboy_utils:gen_body(bellboy_utils:get_body(Resp)), response => Resp}};
