@@ -4,6 +4,7 @@ Bellboy - is Erlang HTTP client library for send SMS by different services: Pliv
 ## Contents
 * [Goals](#goals)
 * [Build & Run](#build--run)
+* [Dialyzer](#dialyzer)
 * [Clean Project](#clean-project)
 * [Install bellboy to project](#install-bellboy-to-project-rebar3)
 * [Erlang Plivo](#erlang-plivo)
@@ -28,33 +29,24 @@ Bellboy aims to provide a simple way for send SMS by different services by REST 
 ```sh
 $ git clone https://github.com/vkatsuba/bellboy.git
 $ cd bellboy
-$ make
+$ wget https://s3.amazonaws.com/rebar3/rebar3
+$ chmod u+x ./rebar3
+$ ./rebar3 shell
+```
+# Dialyzer
+```sh
+$ ./rebar3 dialyzer
 ```
 # Clean Project
 ```sh
-$ make clean
+$ ./rebar3 clean
 ```
 # Install bellboy to project: [Rebar3](https://www.rebar3.org/)
 * Edit file **rebar.config**:
-```
-...
+```erlang
 {deps, [
-  ...
-  {bellboy, {git, "git://github.com/vkatsuba/bellboy.git", {branch, "master"}}},
-  ...
+    {bellboy, "0.1.0"},
 ]}.
-...
-```
-* Edit file ***.app.src**:
-```
-...
-  {applications,
-   [
-    ...,
-    bellboy,
-    ...
-   ]},
-...
 ```
 
 # Erlang Plivo
