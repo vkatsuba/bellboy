@@ -1,5 +1,5 @@
 {application, bellboy,
- [{description, "Bellboy is small Erlang client library for send SMS by REST API"},
+ [{description, "Bellboy is HTTP client library for send SMS by different services like Plivo, Twilio, Nexmo"},
   {vsn, semver},
   {registered, []},
   {applications,
