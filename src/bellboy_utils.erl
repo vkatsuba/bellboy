@@ -31,14 +31,9 @@
   get_body/1,
   gen_body/1,
   httpc_request/1,
-  is_valid/1
+  is_valid/1,
+  basic_auth/2
 ]).
-
-%%% ==================================================================
-%%% Includes
-%%% ==================================================================
-
--include("bellboy.hrl").
 
 %%% ==================================================================
 %%% Public functions
@@ -103,3 +98,6 @@ httpc_request(#{m := M, u := URL}) ->
 is_valid([])          -> true;
 is_valid([true | T])  -> is_valid(T);
 is_valid(_)           -> false.
+
+basic_auth(AuthID, AuthToken) ->
+    "Basic " ++ binary_to_list(base64:encode(AuthID ++ ":" ++ AuthToken)).

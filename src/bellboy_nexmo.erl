@@ -29,10 +29,14 @@
 -export([message/1]).
 
 %%% ==================================================================
-%%% Includes
+%%% Macros
 %%% ==================================================================
 
--include("bellboy.hrl").
+-define(BAD_ARG, {error, bad_arg}).
+-define(NEXMO_URL_MSG, "https://rest.nexmo.com/sms/json").
+-define(NEXMO_URL_VERIFY, "https://api.nexmo.com/verify/json").
+-define(NEXMO_URL_CONTROL, "https://api.nexmo.com/verify/control/json").
+-define(NEXMO_URL_CHECK, "https://api.nexmo.com/verify/check/json").
 
 %%% ==================================================================
 %%% API functions
