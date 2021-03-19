@@ -173,12 +173,12 @@ ReqMap = #{
 ```erlang
 % https://developer.nexmo.com/verify/overview 
 ReqMap = #{
-  type        => send_pin,                 % atom() - bellboy type for send SMS
-  brand       => "Brand",                  % list() - Nexmo brand
-  number      => "11111111111111111",      % list() - User phone number
-  code_length => "4",                      % list() - Length of PIN
-  api_key     => "ApiKey",                 % list() - Nexmo API key
-  api_secret  => "ApiSecret"               % list() - Nexmo API secret
+  type        => send_pin,             % atom() - bellboy type for send SMS
+  brand       => "Brand",              % list() - Nexmo brand
+  number      => "11111111111111111",  % list() - User phone number
+  code_length => "4",                  % list() - Length of PIN
+  api_key     => "ApiKey",             % list() - Nexmo API key
+  api_secret  => "ApiSecret"           % list() - Nexmo API secret
 },
 
 % Code     - integer()
@@ -191,11 +191,11 @@ ReqMap = #{
 ```erlang
 % https://developer.nexmo.com/verify/overview 
 ReqMap = #{
-  type        => check_pin,                % atom() - bellboy type for send SMS
-  request_id  => "ReqID",                  % list() - Nexmo `request_id` field from `send_pin` response
-  code        => "1111",                   % list() - Nexmo PIN code 
-  api_key     => "ApiKey",                 % list() - Nexmo API key
-  api_secret  => "ApiSecret"               % list() - Nexmo API secret
+  type        => check_pin,   % atom() - bellboy type for send SMS
+  request_id  => "ReqID",     % list() - Nexmo `request_id` field from `send_pin` response
+  code        => "1111",      % list() - Nexmo PIN code 
+  api_key     => "ApiKey",    % list() - Nexmo API key
+  api_secret  => "ApiSecret"  % list() - Nexmo API secret
 },
 
 % Code     - integer()
@@ -208,10 +208,10 @@ ReqMap = #{
 ```erlang
 % https://developer.nexmo.com/verify/overview 
 ReqMap = #{
-  type        => cancel_pin,               % atom() - bellboy type for send SMS
-  request_id  => "ReqID",                  % list() - Nexmo `request_id` field from `send_pin` response
-  api_key     => "ApiKey",                 % list() - Nexmo API key
-  api_secret  => "ApiSecret"               % list() - Nexmo API secret
+  type        => cancel_pin,  % atom() - bellboy type for send SMS
+  request_id  => "ReqID",     % list() - Nexmo `request_id` field from `send_pin` response
+  api_key     => "ApiKey",    % list() - Nexmo API key
+  api_secret  => "ApiSecret"  % list() - Nexmo API secret
 },
 
 % Code     - integer()
