@@ -58,10 +58,10 @@ $ ./rebar3 clean
 ReqMap = #{
    type => send_message,            % atom()   - bellboy type for send SMS
    auth_id => "PlivoAuthID",        % list()   - Plivo auth ID
-    auth_token => "PlivoAuthToken",  % list()   - Plivo auth token
-    src => <<"00000000000000000">>,  % binary() - Plivo phone number
-    dst => <<"11111111111111111">>,  % binary() - user phone number
-    text => <<"Plivo SMS Text">>     % binary() - SMS text
+   auth_token => "PlivoAuthToken",  % list()   - Plivo auth token
+   src => <<"00000000000000000">>,  % binary() - Plivo phone number
+   dst => <<"11111111111111111">>,  % binary() - user phone number
+   text => <<"Plivo SMS Text">>     % binary() - SMS text
 },
 
 % Code     - integer()
