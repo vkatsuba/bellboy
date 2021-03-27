@@ -56,12 +56,12 @@ $ ./rebar3 clean
 ```erlang
 % https://docs.labs.plivo.com/latest/python/elements/message/send-an-sms
 ReqMap = #{
-  type => send_message,            % atom()   - bellboy type for send SMS
-  auth_id => "PlivoAuthID",        % list()   - Plivo auth ID
-  auth_token => "PlivoAuthToken",  % list()   - Plivo auth token
-  src => <<"00000000000000000">>,  % binary() - Plivo phone number
-  dst => <<"11111111111111111">>,  % binary() - user phone number
-  text => <<"Plivo SMS Text">>     % binary() - SMS text
+   type => send_message,            % atom()   - bellboy type for send SMS
+   auth_id => "PlivoAuthID",        % list()   - Plivo auth ID
+    auth_token => "PlivoAuthToken",  % list()   - Plivo auth token
+    src => <<"00000000000000000">>,  % binary() - Plivo phone number
+    dst => <<"11111111111111111">>,  % binary() - user phone number
+    text => <<"Plivo SMS Text">>     % binary() - SMS text
 },
 
 % Code     - integer()
@@ -74,10 +74,10 @@ ReqMap = #{
 ```erlang
 % https://www.plivo.com/docs/sms/getting-started/advanced/sms-details-single-message
 ReqMap = #{
-  type => get_message,             % atom() - bellboy type for send SMS
-  auth_id => "PlivoAuthID",        % list() - Plivo auth ID
-  auth_token => "PlivoAuthToken",  % list() - Plivo auth token
-  message_uuid => "PlivoMsgUUID"   % list() - Plivo message UUID
+   type => get_message,             % atom() - bellboy type for send SMS
+   auth_id => "PlivoAuthID",        % list() - Plivo auth ID
+   auth_token => "PlivoAuthToken",  % list() - Plivo auth token
+   message_uuid => "PlivoMsgUUID"   % list() - Plivo message UUID
 },
 
 % Code     - integer()
@@ -90,9 +90,9 @@ ReqMap = #{
 ```erlang
 % https://www.plivo.com/docs/sms/getting-started/advanced/sms-details-all-messages/
 ReqMap = #{
-  type => get_messages,            % atom() - bellboy type for send SMS
-  auth_id => "PlivoAuthID",        % list() - Plivo auth ID
-  auth_token => "PlivoAuthToken"   % list() - Plivo auth token
+   type => get_messages,            % atom() - bellboy type for send SMS
+   auth_id => "PlivoAuthID",        % list() - Plivo auth ID
+   auth_token => "PlivoAuthToken"   % list() - Plivo auth token
 },
 
 % Code     - integer()
@@ -106,12 +106,12 @@ ReqMap = #{
 ```erlang
 % https://www.twilio.com/docs/sms/send-messages
 ReqMap = #{
-  type        => send_message,         % atom() - bellboy type for send SMS
-  account_sid => "TwilioAccountSID",   % list() - Twilio account SID
-  auth_token  => "TwilioAuthToken",    % list() - Twilio auth token
-  body        => "Twilio SMS Text",    % list() - SMS text
-  from        => "00000000000000000",  % list() - Twilio phone number
-  to          => "11111111111111111"   % list() - User phone number
+   type        => send_message,         % atom() - bellboy type for send SMS
+   account_sid => "TwilioAccountSID",   % list() - Twilio account SID
+   auth_token  => "TwilioAuthToken",    % list() - Twilio auth token
+   body        => "Twilio SMS Text",    % list() - SMS text
+   from        => "00000000000000000",  % list() - Twilio phone number
+   to          => "11111111111111111"   % list() - User phone number
 },
 
 % Code     - integer()
@@ -124,10 +124,10 @@ ReqMap = #{
 ```erlang
 % https://www.twilio.com/docs/sms/api/message-resource#fetch-a-message-resource
 ReqMap = #{
-  type        => get_message,          % atom() - bellboy type for send SMS
-  account_sid => "TwilioAccountSID",   % list() - Twilio account SID
-  auth_token  => "TwilioAuthToken",    % list() - Twilio auth token
-  sid         => "MsgSid"              % list() - Twilio SID of SMS message
+   type        => get_message,          % atom() - bellboy type for send SMS
+   account_sid => "TwilioAccountSID",   % list() - Twilio account SID
+   auth_token  => "TwilioAuthToken",    % list() - Twilio auth token
+   sid         => "MsgSid"              % list() - Twilio SID of SMS message
 },
 
 % Code     - integer()
@@ -140,9 +140,9 @@ ReqMap = #{
 ```erlang
 % https://www.twilio.com/docs/sms/api/message-resource#read-multiple-message-resources
 ReqMap = #{
-  type        => get_messages,         % atom() - bellboy type for send SMS
-  account_sid => "TwilioAccountSID",   % list() - Twilio account SID
-  auth_token  => "TwilioAuthToken"     % list() - Twilio auth token
+   type        => get_messages,         % atom() - bellboy type for send SMS
+   account_sid => "TwilioAccountSID",   % list() - Twilio account SID
+   auth_token  => "TwilioAuthToken"     % list() - Twilio auth token
 },
 
 % Code     - integer()
@@ -156,12 +156,12 @@ ReqMap = #{
 ```erlang
 % https://developer.nexmo.com/api/sms
 ReqMap = #{
-  type        => send_sms,                 % atom()   - bellboy type for send SMS
-  from        => <<"00000000000000000">>,  % binary() - Nexmo name or number
-  to          => <<"11111111111111111">>,  % binary() - User phone number
-  text        => <<"Nexmo SMS text">>,     % binary() - SMS text
-  api_key     => <<"ApiKey">>,             % binary() - Nexmo API key
-  api_secret  => <<"ApiSecret">>           % binary() - Nexmo API secret
+   type        => send_sms,                 % atom()   - bellboy type for send SMS
+   from        => <<"00000000000000000">>,  % binary() - Nexmo name or number
+   to          => <<"11111111111111111">>,  % binary() - User phone number
+   text        => <<"Nexmo SMS text">>,     % binary() - SMS text
+   api_key     => <<"ApiKey">>,             % binary() - Nexmo API key
+   api_secret  => <<"ApiSecret">>           % binary() - Nexmo API secret
 },
 
 % Code     - integer()
@@ -173,12 +173,12 @@ ReqMap = #{
 ```erlang
 % https://developer.nexmo.com/verify/overview 
 ReqMap = #{
-  type        => send_pin,             % atom() - bellboy type for send SMS
-  brand       => "Brand",              % list() - Nexmo brand
-  number      => "11111111111111111",  % list() - User phone number
-  code_length => "4",                  % list() - Length of PIN
-  api_key     => "ApiKey",             % list() - Nexmo API key
-  api_secret  => "ApiSecret"           % list() - Nexmo API secret
+   type        => send_pin,             % atom() - bellboy type for send SMS
+   brand       => "Brand",              % list() - Nexmo brand
+   number      => "11111111111111111",  % list() - User phone number
+   code_length => "4",                  % list() - Length of PIN
+   api_key     => "ApiKey",             % list() - Nexmo API key
+   api_secret  => "ApiSecret"           % list() - Nexmo API secret
 },
 
 % Code     - integer()
@@ -191,11 +191,11 @@ ReqMap = #{
 ```erlang
 % https://developer.nexmo.com/verify/overview 
 ReqMap = #{
-  type        => check_pin,   % atom() - bellboy type for send SMS
-  request_id  => "ReqID",     % list() - Nexmo `request_id` field from `send_pin` response
-  code        => "1111",      % list() - Nexmo PIN code 
-  api_key     => "ApiKey",    % list() - Nexmo API key
-  api_secret  => "ApiSecret"  % list() - Nexmo API secret
+   type        => check_pin,   % atom() - bellboy type for send SMS
+   request_id  => "ReqID",     % list() - Nexmo `request_id` field from `send_pin` response
+   code        => "1111",      % list() - Nexmo PIN code 
+   api_key     => "ApiKey",    % list() - Nexmo API key
+   api_secret  => "ApiSecret"  % list() - Nexmo API secret
 },
 
 % Code     - integer()
@@ -208,10 +208,10 @@ ReqMap = #{
 ```erlang
 % https://developer.nexmo.com/verify/overview 
 ReqMap = #{
-  type        => cancel_pin,  % atom() - bellboy type for send SMS
-  request_id  => "ReqID",     % list() - Nexmo `request_id` field from `send_pin` response
-  api_key     => "ApiKey",    % list() - Nexmo API key
-  api_secret  => "ApiSecret"  % list() - Nexmo API secret
+   type        => cancel_pin,  % atom() - bellboy type for send SMS
+   request_id  => "ReqID",     % list() - Nexmo `request_id` field from `send_pin` response
+   api_key     => "ApiKey",    % list() - Nexmo API key
+   api_secret  => "ApiSecret"  % list() - Nexmo API secret
 },
 
 % Code     - integer()
