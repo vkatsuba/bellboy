@@ -189,13 +189,13 @@ check_pin(_) ->
 
 
 nexmo_url_msg() ->
-    application:get_env(bellboy, nexmo_url_msg).
+    application:get_env(bellboy, nexmo_url_msg, undefined).
 
 nexmo_url_verify() ->
-    application:get_env(bellboy, nexmo_url_verify).
+    application:get_env(bellboy, nexmo_url_verify, undefined).
 
 nexmo_url_control() ->
-    application:get_env(bellboy, nexmo_url_control).
+    application:get_env(bellboy, nexmo_url_control, undefined).
 
 nexmo_url_check() ->
-    application:get_env(bellboy, nexmo_url_check).
+    application:get_env(bellboy, nexmo_url_check, undefined).

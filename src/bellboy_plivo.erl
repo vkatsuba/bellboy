@@ -139,5 +139,5 @@ get_messages(_) ->
     {error, bad_arg}.
 
 plivo_url_msg(AuthID) ->
-    Format = application:get_env(bellboy, plivo_url_msg),
+    Format = application:get_env(bellboy, plivo_url_msg, undefined),
     io_lib:format(Format, [AuthID]).

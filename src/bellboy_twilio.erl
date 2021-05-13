@@ -141,9 +141,9 @@ get_messages(_) ->
 
 
 twilio_url_msg(AuthID) ->
-    Format = application:get_env(bellboy, twilio_url_msg, ""),
+    Format = application:get_env(bellboy, twilio_url_msg, undefined),
     io_lib:format(Format, [AuthID]).
 
 twilio_url_spec(AuthID, SID) ->
-    Format = application:get_env(bellboy, twilio_url_spec, ""),
+    Format = application:get_env(bellboy, twilio_url_spec, undefined),
     io_lib:format(Format, [AuthID, SID]).
