@@ -15,11 +15,14 @@
 %% any response body. The start/2 function waits to receive a stop atom,
 %% indicating it should close the listen socket and exit.
 start(Handler) ->
-    {ok, spawn(fun() -> start(Handler, 8000) end)}.
+    {ok, spawn_link(fun() -> do_start(Handler, 8000) end)}.
 
 start(Handler, Port) ->
-    {ok, LS} = gen_tcp:listen(Port, [{reuseaddr,true},binary,{backlog,1024}]),
-    spawn(fun() -> accept(LS, Handler) end),
+    {ok, spawn_link(fun() -> do_start(Handler, Port) end)}.
+
+do_start(Handler, Port) ->
+    {ok, LS} = gen_tcp:listen(Port, [{reuseaddr,true}, binary, {backlog,1024}]),
+    spawn_link(fun() -> accept(LS, Handler) end),
     receive
         {stop, StopPID} ->
             gen_tcp:close(LS),
@@ -39,7 +42,7 @@ accept(LS, Handler) ->
     case gen_tcp:accept(LS) of
         {ok, S} ->
             ok = inet:setopts(S, [{packet,http_bin}]),
-            spawn(fun() -> accept(LS, Handler) end),
+            spawn_link(fun() -> accept(LS, Handler) end),
             serve(S, Handler, [{headers, []}]);
         {error, closed} ->
             ok
