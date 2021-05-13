@@ -1,16 +1,25 @@
-{application, bellboy,
- [{description, "Bellboy is HTTP client library for send SMS by different services like Plivo, Twilio, Nexmo"},
-  {vsn, semver},
-  {registered, []},
-  {applications,
-   [kernel,
-    stdlib,
-    inets,
-    ssl
-   ]},
-  {env,[]},
-  {modules, []},
-  {maintainers, []},
-  {licenses, ["MIT"]},
-  {links, [{"Github", "https://github.com/vkatsuba/bellboy"}]}
- ]}.
+{application, bellboy, [
+    {description, "Bellboy is HTTP client library for send SMS by different services like Plivo, Twilio, Nexmo"},
+    {vsn, semver},
+    {registered, []},
+    {applications, [
+        kernel,
+        stdlib,
+        inets,
+        ssl,
+        jsone
+    ]},
+    {env,[
+        {twilio_url_msg, "https://api.twilio.com/2010-04-01/Accounts/~s/Messages.json"},
+        {twilio_url_spec, "https://api.twilio.com/2010-04-01/Accounts/~s/Messages/~s.json"},
+        {nexmo_url_msg, "https://rest.nexmo.com/sms/json"},
+        {nexmo_url_verify, "https://api.nexmo.com/verify/json"},
+        {nexmo_url_control, "https://api.nexmo.com/verify/control/json"},
+        {nexmo_url_check, "https://api.nexmo.com/verify/check/json"},
+        {plivo_url_msg, "https://api.plivo.com/v1/Account/~s/Message/"}
+    ]},
+    {modules, []},
+    {maintainers, []},
+    {licenses, ["MIT"]},
+    {links, [{"Github", "https://github.com/vkatsuba/bellboy"}]}
+]}.
