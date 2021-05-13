@@ -1,0 +1,22 @@
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        otp: [21.3, 22.0.7, 22.3, 23.0.4, 23.2.7.0, 24.0]
+    container:
+      image: erlang:${{ matrix.otp }}-alpine
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v2
+    - name: Compile
+      run: rebar3 compile
+    - name: Tests
+      run: |
+           rebar3 xref
+           rebar3 dialyzer
+           rebar3 eunit

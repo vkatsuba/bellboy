@@ -1,7 +1,9 @@
 # bellboy
 Bellboy - is Erlang `HTTP` client library for send **[SMS](https://en.wikipedia.org/wiki/SMS)** by different services: **Plivo**, **Twilio**, **Nexmo**.
 
-[![Hex.pm Version](https://img.shields.io/hexpm/v/bellboy.svg?style=flat-square)](https://hex.pm/packages/bellboy)
+[![Hex.pm Version](https://img.shields.io/hexpm/v/bellboy.svg)](https://hex.pm/packages/bellboy)
+
+[![Build Status](https://github.com/vkatsuba/bellboy/workflows/CI/badge.svg)](https://github.com/vkatsuba/bellboy/actions)
 
 ## Contents
 * [Goals](#goals)
