@@ -2,7 +2,14 @@
 
 -include_lib("eunit/include/eunit.hrl").
 
-http_handler(PID, _Socket, Request) ->
+start_server(Kind) ->
+    Parent = self(),
+    bellboy_http_server:start(
+        fun(S, Req) -> http_handler(Kind, Parent, S, Req) end,
+        8000
+    ).
+
+http_handler(nexmo_ok, PID, _Socket, Request) ->
     PID ! Request,
     Content = <<
         "{\n    \"message-count\": \"1\",\n    "
@@ -27,8 +34,7 @@ http_handler(PID, _Socket, Request) ->
     ], Content}.
 
 nexmo_sms_test() ->
-    Parent = self(),
-    {ok, PID} = bellboy_http_server:start(fun(S, Req) -> http_handler(Parent, S, Req) end),
+    {ok, PID} = start_server(nexmo_ok),
     application:set_env(bellboy, nexmo_url_msg, "http://localhost:8000"),
     {ok, #{body := RawBody, code := 200, response := {{"HTTP/1.1", 200, "OK"}, [_|_], RawBody}}} =
         bellboy:nexmo(#{
