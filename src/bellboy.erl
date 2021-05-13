@@ -22,44 +22,26 @@
 
 -module(bellboy).
 
-%%% ==================================================================
-%%% API
-%%% ==================================================================
-
-
 -export([
-  plivo/1,
-  twilio/1,
-  nexmo/1
+    plivo/1,
+    twilio/1,
+    nexmo/1
 ]).
 
-%%% ==================================================================
-%%% API functions
-%%% ==================================================================
-
-%% -------------------------------------------------------------------
-%% @doc
-%% Plivo
-%% @end
-%% -------------------------------------------------------------------
--spec plivo(Data :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
+-spec plivo(Data :: maps:map()) ->
+    {ok, Result :: maps:map()} |
+    {error, Reason :: tuple() | bad_arg}.
 
 plivo(Data) -> bellboy_plivo:message(Data).
 
-%% -------------------------------------------------------------------
-%% @doc
-%% Twilio
-%% @end
-%% -------------------------------------------------------------------
--spec twilio(Data :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
+-spec twilio(Data :: maps:map()) ->
+    {ok, Result :: maps:map()} |
+    {error, Reason :: tuple() | bad_arg}.
 
 twilio(Data) -> bellboy_twilio:message(Data).
 
-%% -------------------------------------------------------------------
-%% @doc
-%% Nexmo
-%% @end
-%% -------------------------------------------------------------------
--spec nexmo(Data :: maps:map()) -> {ok, Result :: maps:map()} | {error, Reason :: tuple() | bad_arg}.
+-spec nexmo(Data :: maps:map()) ->
+    {ok, Result :: maps:map()} |
+    {error, Reason :: tuple() | bad_arg}.
 
 nexmo(Data) -> bellboy_nexmo:message(Data).
