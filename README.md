@@ -49,7 +49,7 @@ $ ./rebar3 clean
 * Edit file **rebar.config**:
 ```erlang
 {deps, [
-    {bellboy, "1.0.1"},
+    {bellboy, "2.0.0"},
 ]}.
 ```
 
