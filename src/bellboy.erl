@@ -28,18 +28,27 @@
     nexmo/1
 ]).
 
+%% @doc
+%% Request to Plivo
+%% @end
 -spec plivo(Data :: maps:map()) ->
     {ok, Result :: maps:map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 plivo(Data) -> bellboy_plivo:message(Data).
 
+%% @doc
+%% Request to Twilio
+%% @end
 -spec twilio(Data :: maps:map()) ->
     {ok, Result :: maps:map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 twilio(Data) -> bellboy_twilio:message(Data).
 
+%% @doc
+%% Request to Nexmo
+%% @end
 -spec nexmo(Data :: maps:map()) ->
     {ok, Result :: maps:map()} |
     {error, Reason :: tuple() | bad_arg}.

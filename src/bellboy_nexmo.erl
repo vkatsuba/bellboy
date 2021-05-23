@@ -24,10 +24,12 @@
 
 -export([message/1]).
 
-%% @private
 %% @doc
 %% Plivo handler
 %% @end
+-spec message(Data :: maps:map()) ->
+    {ok, Result :: maps:map()} |
+    {error, Reason :: tuple() | bad_arg}.
 
 message(#{type := send_sms} = Data) ->
     send_sms(maps:without([type], Data));
@@ -71,7 +73,6 @@ send_sms(#{from := F, text := TXT, to := T, api_key := AK, api_secret := AC} = B
         Error ->
             Error
     end;
-
 send_sms(_) ->
     {error, bad_arg}.
 
@@ -111,7 +112,6 @@ send_pin(#{api_key := AK, api_secret := AC, number := N, brand := B, code_length
         Error ->
             Error
     end;
-
 send_pin(_) ->
     {error, bad_arg}.
 
@@ -145,7 +145,6 @@ cancel_pin(#{api_key := AK, api_secret := AC, request_id := RID}) when is_list(A
         Error ->
             Error
     end;
-
 cancel_pin(_) ->
     {error, bad_arg}.
 
@@ -183,7 +182,6 @@ check_pin(#{api_key := AK, api_secret := AC, request_id := RID, code := C})
         Error ->
             Error
     end;
-
 check_pin(_) ->
     {error, bad_arg}.
 

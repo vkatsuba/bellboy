@@ -64,13 +64,10 @@ gen_body(Data) ->
 
 httpc_request(#{m := M, u := URL, h := H, b := B, ct := CT}) ->
     httpc:request(M, {URL, maps:to_list(H), CT, B}, [], []);
-
 httpc_request(#{m := M, u := URL, b := B, ct := CT}) ->
     httpc:request(M, {URL, [], CT, B}, [], []);
-
 httpc_request(#{m := M, u := URL, h := H}) ->
     httpc:request(M, {URL, maps:to_list(H)}, [], []);
-
 httpc_request(#{m := M, u := URL}) ->
     httpc:request(M, {URL, []}, [], []).
 

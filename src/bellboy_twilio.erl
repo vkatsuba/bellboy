@@ -24,20 +24,19 @@
 
 -export([message/1]).
 
-%% @private
 %% @doc
 %% Twilio handler
 %% @end
+-spec message(Data :: maps:map()) ->
+    {ok, Result :: maps:map()} |
+    {error, Reason :: tuple() | bad_arg}.
 
 message(#{type := send_message} = Data) ->
     send_message(Data);
-
 message(#{type := get_message} = Data) ->
     get_message(Data);
-
 message(#{type := get_messages} = Data) ->
     get_messages(Data);
-
 message(_) ->
     {error, bad_arg}.
 
@@ -73,7 +72,6 @@ send_message(#{account_sid := AID, auth_token := AT, body := B, from := F, to :=
         Error ->
             Error
     end;
-
 send_message(_) ->
     {error, bad_arg}.
 
@@ -106,7 +104,6 @@ get_message(#{account_sid := AID, auth_token := AT, sid := SID})
         Error ->
             Error
     end;
-
 get_message(_) ->
     {error, bad_arg}.
 
@@ -135,7 +132,6 @@ get_messages(#{account_sid := AID, auth_token := AT}) when is_list(AID), is_list
         Error ->
             Error
     end;
-
 get_messages(_) ->
     {error, bad_arg}.
 

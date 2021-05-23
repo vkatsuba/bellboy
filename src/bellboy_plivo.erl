@@ -24,20 +24,19 @@
 
 -export([message/1]).
 
-%% @private
 %% @doc
 %% Plivo handler
 %% @end
+-spec message(Data :: maps:map()) ->
+    {ok, Result :: maps:map()} |
+    {error, Reason :: tuple() | bad_arg}.
 
 message(#{type := send_message} = Data) ->
     send_message(Data);
-
 message(#{type := get_message} = Data) ->
     get_message(Data);
-
 message(#{type := get_messages} = Data) ->
     get_messages(Data);
-
 message(_) ->
     {error, bad_arg}.
 
@@ -71,7 +70,6 @@ send_message(#{auth_id := AID, auth_token := AT} = Data)
         Error ->
             Error
     end;
-
 send_message(_) ->
     {error, bad_arg}.
 
@@ -103,7 +101,6 @@ get_message(#{auth_id := AID, auth_token := AT, message_uuid := MUUID})
         Error ->
             Error
     end;
-
 get_message(_) ->
     {error, bad_arg}.
 
@@ -134,7 +131,6 @@ get_messages(#{auth_id := AID, auth_token := AT})
         Error ->
             Error
     end;
-
 get_messages(_) ->
     {error, bad_arg}.
 
