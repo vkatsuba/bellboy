@@ -27,8 +27,8 @@
 %% @doc
 %% Plivo handler
 %% @end
--spec message(Data :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec message(Data :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 message(#{type := send_sms} = Data) ->
@@ -46,8 +46,8 @@ message(_) ->
 %% @doc
 %% Send simple SMS message
 %% @end
--spec send_sms(Params :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec send_sms(Params :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 send_sms(#{from := F, text := TXT, to := T, api_key := AK, api_secret := AC} = B)
@@ -80,8 +80,8 @@ send_sms(_) ->
 %% @doc
 %% Send PIN SMS
 %% @end
--spec send_pin(Params :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec send_pin(Params :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 send_pin(#{api_key := AK, api_secret := AC, number := N, brand := B, code_length := CL})
@@ -119,8 +119,8 @@ send_pin(_) ->
 %% @doc
 %% Cancel PIN SMS
 %% @end
--spec cancel_pin(Params :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec cancel_pin(Params :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 cancel_pin(#{api_key := AK, api_secret := AC, request_id := RID}) when is_list(AK), is_list(AC), is_list(RID) ->
@@ -152,8 +152,8 @@ cancel_pin(_) ->
 %% @doc
 %% Check PIN SMS
 %% @end
--spec check_pin(Params :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec check_pin(Params :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 check_pin(#{api_key := AK, api_secret := AC, request_id := RID, code := C})

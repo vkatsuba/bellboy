@@ -27,8 +27,8 @@
 %% @doc
 %% Twilio handler
 %% @end
--spec message(Data :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec message(Data :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 message(#{type := send_message} = Data) ->
@@ -44,8 +44,8 @@ message(_) ->
 %% @doc
 %% Send simple SMS message
 %% @end
--spec send_message(Params :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec send_message(Params :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 send_message(#{account_sid := AID, auth_token := AT, body := B, from := F, to := T})
@@ -80,8 +80,8 @@ send_message(_) ->
 %% @doc
 %% Get specific SMS message
 %% @end
--spec get_message(Params :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec get_message(Params :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 get_message(#{account_sid := AID, auth_token := AT, sid := SID})
@@ -111,8 +111,8 @@ get_message(_) ->
 %% @doc
 %% Get all SMS messages
 %% @end
--spec get_messages(Params :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec get_messages(Params :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 get_messages(#{account_sid := AID, auth_token := AT}) when is_list(AID), is_list(AT) ->
