@@ -47,7 +47,7 @@ get_body({_, _, Body}) -> Body.
 %% @doc
 %% Helper for generate body: if data has JSON format - decode to map, if not - return data as result
 %% @end
--spec gen_body(Data :: lists:list() | binary()) -> Result :: maps:map() | any().
+-spec gen_body(Data :: list() | binary()) -> Result :: map() | any().
 
 gen_body(Data) ->
     case catch jsone:decode(Data, [{object_format, map}]) of
@@ -58,7 +58,7 @@ gen_body(Data) ->
 %% @doc
 %% HTTPC request with/without headers
 %% @end
--spec httpc_request(Params :: maps:map()) ->
+-spec httpc_request(Params :: map()) ->
     {ok, Result :: tuple()} |
     {error, Reason :: tuple()}.
 

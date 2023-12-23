@@ -27,8 +27,8 @@
 %% @doc
 %% Plivo handler
 %% @end
--spec message(Data :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec message(Data :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 message(#{type := send_message} = Data) ->
@@ -44,8 +44,8 @@ message(_) ->
 %% @doc
 %% Send simple SMS message
 %% @end
--spec send_message(Params :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec send_message(Params :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 send_message(#{auth_id := AID, auth_token := AT} = Data)
@@ -77,8 +77,8 @@ send_message(_) ->
 %% @doc
 %% Get SMS message
 %% @end
--spec get_message(Params :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec get_message(Params :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 get_message(#{auth_id := AID, auth_token := AT, message_uuid := MUUID})
@@ -108,8 +108,8 @@ get_message(_) ->
 %% @doc
 %% Get SMS messages
 %% @end
--spec get_messages(Params :: maps:map()) ->
-    {ok, Result :: maps:map()} |
+-spec get_messages(Params :: map()) ->
+    {ok, Result :: map()} |
     {error, Reason :: tuple() | bad_arg}.
 
 get_messages(#{auth_id := AID, auth_token := AT})
